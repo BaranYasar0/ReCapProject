@@ -24,6 +24,7 @@ namespace Business.Concrete
             {
                 _carDal.Add(car);
             }
+            
             else
             {
                 Console.WriteLine("Araba ismi minimum 2 karakter ve günlük fiyatı 0'dan büyük olmalıdır.");
