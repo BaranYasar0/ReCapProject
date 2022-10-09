@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Business.Concrete;
+﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -9,22 +8,55 @@ Console.WriteLine("Hello, World!");
 
 
 CarManager carManager = new CarManager(new EfCarDal());
-Car car1= new Car() {CarId=41,ColorId=12,BrandId=2,DailyPrice=150,Description="Mercedes",ModelYear=2022 };
-Car car2 = new Car() { CarId = 5, ColorId = 22, BrandId = 1, DailyPrice = 155, Description = "Mercedes", ModelYear = 2022 };
-Car car3 = new Car() { CarId = 6, ColorId = 22, BrandId = 2, DailyPrice = 155, Description = "A", ModelYear = 2022 };
-Car car4 = new Car() { CarId = 7, ColorId = 22, BrandId = 2, DailyPrice = 0, Description = "ABC", ModelYear = 2022 };
+//ColorManager colorManager = new ColorManager(new EfColorDal());
+//BrandManager brandManager = new BrandManager(new EfBrandDal());
+//Car car1 = new Car() { CarId = 34, ColorId = 1, BrandId = 2, DailyPrice = 120, Description = "Polo", ModelYear = 2022 };
+//Color color1 = new Color() { ColorId = 11, ColorName = "Lila" };
+//Brand brand1 = new Brand() { BrandId = 2, BrandName = "Opel" };
+//carManager.Add(car1);
+//colorManager.Add(color1);
+//brandManager.Add(brand1);
 
-foreach (var car in carManager.GetAll())
+//CarTest();
+//ColorTest();
+//randTest();
+
+//carManager.Delete(car1);
+
+CarDetailTest();
+
+static void CarTest()
 {
-    Console.WriteLine(car.Description);
+    CarManager carManager = new CarManager(new EfCarDal());
+    foreach (var car in carManager.GetAll())
+    {
+        Console.WriteLine(car.Description);
+    }
 }
 
-carManager.Add(car1);
-carManager.Add(car2);
-carManager.Add(car3);
-carManager.Add(car4);
-
-foreach (var car in carManager.GetAll())
+static void ColorTest()
 {
-    Console.WriteLine(car.Description);
+    ColorManager colorManager = new ColorManager(new EfColorDal());
+    foreach (var item in colorManager.GetAll())
+    {
+        Console.WriteLine("Color Name: " + item.ColorName);
+    }
+}
+
+static void BrandTest()
+{
+    BrandManager brandManager = new BrandManager(new EfBrandDal());
+    foreach (var item in brandManager.GetAll())
+    {
+        Console.WriteLine("Brand Name: " + item.BrandName);
+    }
+}
+
+static void CarDetailTest()
+{
+    CarManager carManager = new CarManager(new EfCarDal());
+    foreach (var car in carManager.GetCarDetails())
+    {
+        Console.WriteLine("{0}/ {1} / {2} / {3} ",car.Description,car.BrandName,car.ColorName,car.DailyPrice);
+    }
 }
