@@ -28,7 +28,7 @@ CarDetailTest();
 static void CarTest()
 {
     CarManager carManager = new CarManager(new EfCarDal());
-    foreach (var car in carManager.GetAll())
+    foreach (var car in carManager.GetAll().Data)
     {
         Console.WriteLine(car.Description);
     }
@@ -55,8 +55,10 @@ static void BrandTest()
 static void CarDetailTest()
 {
     CarManager carManager = new CarManager(new EfCarDal());
-    foreach (var car in carManager.GetCarDetails())
+    var result = carManager.GetCarDetails();
+    foreach (var car in result.Data)
     {
+        Console.WriteLine(result.Message);
         Console.WriteLine("{0}/ {1} / {2} / {3} ",car.Description,car.BrandName,car.ColorName,car.DailyPrice);
     }
 }
